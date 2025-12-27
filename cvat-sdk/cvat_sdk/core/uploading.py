@@ -168,6 +168,8 @@ class Uploader:
 
         file_size = filename.stat().st_size
 
+        if query_params is None:
+            query_params = {}
         self._tus_start_upload(url, query_params=query_params)
         with self._uploading_task(pbar, file_size):
             real_filename = self._upload_file_data_with_tus(
